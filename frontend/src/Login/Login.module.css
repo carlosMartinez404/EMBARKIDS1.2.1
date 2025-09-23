@@ -1,0 +1,22 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.root{
+    width: 100vw;
+    height: 100vh;
+    background-color: beige;
+    display: flex;
+}
+
+.firstContainer{
+    width: 30%;
+    height: 50%;
+    border-radius: 15px;
+    background-color: aqua;
+}
+
+.secondContainer{
+
+}
