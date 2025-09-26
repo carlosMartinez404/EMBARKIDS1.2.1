@@ -1,0 +1,19 @@
+services: # define los contenedores que vamos a levantar
+
+  frontend: # Nombre del contenedor
+
+    build:  # Indica como construir la imagen del contenedor
+      context: ./frontend # Carpeta donde se buscara el Dockerfile y el codigo fuente
+      dockerfile: Dockerfile.dev #  Dockerfile para dev
+  
+    ports:  # Mapea los puertos del contenedor al host
+      - "5173:5173" # El contenedor expone vite en el puerto 5173 y así podemos acceder a el navegador de la maquina host
+  
+    volumes: #  Monta carpetas entre el host y el contenedor.
+      - ./frontend:/app  # montamos el codigo en el contenedor
+      - /app/node_modules # para que no se sobre escriban las dependencias
+  
+    environment:  # Define variables de entorno dentro del contenedor. 
+      - NODE_ENV=development  # Indica que estamos en modo de desarrollo
+      - CHOKIDAR_USEPOLLING=true  # Activa el polling para que vite detecte cambios en windows/docker correctamente.
+      - CHOKIDAR_INTERVAL=100 # Define cuanto tiempo en ms CHOKIDAR revisa los cambios en los archivos.

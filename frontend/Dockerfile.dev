@@ -1,0 +1,20 @@
+#   Build
+FROM node:20-alpine AS Build
+
+#   Crear directorio de trabajo
+WORKDIR /app
+
+#   Copiar package.json y lock
+COPY package*.json ./
+
+#   Instalar dependencias
+RUN npm install
+
+#   Copiar todo el codigo fuente del proyecto
+COPY . . 
+
+#   Exponemos el puerto 5173
+EXPOSE 5173
+
+#   Ejecutamos los siguientes comandos
+CMD ["npm", "run", "dev", "--", "--host"]
