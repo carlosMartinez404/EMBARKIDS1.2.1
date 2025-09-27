@@ -17,3 +17,27 @@ services: # define los contenedores que vamos a levantar
       - NODE_ENV=development  # Indica que estamos en modo de desarrollo
       - CHOKIDAR_USEPOLLING=true  # Activa el polling para que vite detecte cambios en windows/docker correctamente.
       - CHOKIDAR_INTERVAL=100 # Define cuanto tiempo en ms CHOKIDAR revisa los cambios en los archivos.
+
+    
+  backend:  # Nombre del contenedor
+    build:  # Indica como contruir la imagen del contenedor
+      context: ./backend  # Carpeta donde se buscara el Dockerfile y el codigo fuente
+      dockerfile: Dockerfile.dev  # Dockerfile para dev
+    command: python manage.py runserver 0.0.0.0:8000  # Ejecuta el servidor de desarrollo de Django, accesible desde cualquier IP dentro del contenedor.
+    ports:
+      - "8000:8000" # Expone el puerto 8000 del contenedor al puerto 8000 de la maquina local permitiendo acceder a django desde el navegador
+    volumes:
+      - ./backend:/app  # Sincroniza la carpeta local ./backend con la carpeta /app dentro del contenedor.
+    depends_on:
+      - db #  indica que este servicio depende del servicio "db", se asegura que la base de datos este lista antes de inicar django.
+  
+  db: 
+    image: postgres:15 #  Usa la imagen oficial de PostgreSQL version 15 como base para el contenedor de la base de datos
+    environment: #  define variables de entorno dentro del contenedor
+      POSTGRES_DB: EMBARKIDS1.2.1 # Nombre de la base de datos
+      POSTGRES_USER: 7ffc2948f66e8a33be69b47a5b8996f8 
+      POSTGRES_PASSWORD: 507aa218f8588f1a7abbac9651a94f8a 
+
+
+volumes:
+  pgdata:
