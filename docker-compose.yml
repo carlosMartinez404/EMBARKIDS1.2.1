@@ -35,8 +35,8 @@ services: # define los contenedores que vamos a levantar
     image: postgres:15 #  Usa la imagen oficial de PostgreSQL version 15 como base para el contenedor de la base de datos
     environment: #  define variables de entorno dentro del contenedor
       POSTGRES_DB: EMBARKIDS1.2.1 # Nombre de la base de datos
-      POSTGRES_USER: 7ffc2948f66e8a33be69b47a5b8996f8 
-      POSTGRES_PASSWORD: 507aa218f8588f1a7abbac9651a94f8a 
+      POSTGRES_USER: 7ffc2948f66e8a33be69b47a5b8996f8 # Credenciales de usuario de la base de datos
+      POSTGRES_PASSWORD: 507aa218f8588f1a7abbac9651a94f8a # Credenciales de usuario de la base de datos
 
 
 volumes:
