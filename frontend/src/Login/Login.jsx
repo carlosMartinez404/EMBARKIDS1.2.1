@@ -3,15 +3,8 @@ import styles from './assets/Login.module.css';
 import camion from './assets/camion.png'
 
 function Login(){
-    
-    // useEffect(()=> {
-    //     fetch('http://localhost:8000/')
-    //     .then(response => response.json())
-    //     .then(data=> {
-    //         console.log(data)
-    //     })
-    //     .catch(error => console.log('Error:', error))
-    // }, [])
+
+    const [active, setActive] = useState(false)
 
     return(
         <>
@@ -27,8 +20,8 @@ function Login(){
 
                         <div className={styles.inputLoginFormContainer}>
                             <div className={styles.inputContainer}>
-                                <input type="text" className={styles.inputLoginForm} required/>
-                                <h2 className={styles.labelInput}>Usuario</h2>
+                                <input type="text" className={styles.inputLoginForm} onFocus={() => setActive(true)} onBlur={ () => setActive(false)}required/>
+                                <h2 className={`${styles.labelInput} ${active ? styles.active : styles.inactive}`}>Usuario</h2>
                             </div>
 
                             <div className={styles.inputContainer}>
