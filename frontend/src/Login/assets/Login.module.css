@@ -114,13 +114,24 @@
     flex-direction: column;
     font-size: 15px;
     width: 100%;
+    height: 45%;
 }
-.labelInput{
+.labelInputUser{
     position: absolute;
     font-weight:normal;
     align-items:none;
     width: 70%;
     font-size: 17px;
+    pointer-events: none;
+}
+
+.labelInputPassword{
+    position: absolute;
+    font-weight:normal;
+    align-items:none;
+    width: 70%;
+    font-size: 17px;
+    margin-top: 30px;
     pointer-events: none;
 }
 
@@ -142,6 +153,6 @@
 }
 
 @keyframes labelDown {
-    0%{margin-top: -60px;}
+    0%{margin-top: -65px;}
     100%{margin-top: 0px;}
 }

@@ -1,10 +1,14 @@
 import React, {useState, useEffect} from "react";
 import styles from './assets/Login.module.css';
 import camion from './assets/camion.png'
+import CustomeInputText from "../customeComponents/CustomeInputText.jsx"
+
 
 function Login(){
 
-    const [active, setActive] = useState(false)
+    const [active, setActive] = useState(false);
+    const [valueUser, setValueUser] = useState("");
+    const [valuePassword, setValuePassword] = useState("");
 
     return(
         <>
@@ -20,12 +24,11 @@ function Login(){
 
                         <div className={styles.inputLoginFormContainer}>
                             <div className={styles.inputContainer}>
-                                <input type="text" className={styles.inputLoginForm} onFocus={() => setActive(true)} onBlur={ () => setActive(false)}required/>
-                                <h2 className={`${styles.labelInput} ${active ? styles.active : styles.inactive}`}>Usuario</h2>
+                                <CustomeInputText style={{width: "80%"}} placeholder="Usuario"/>
                             </div>
 
                             <div className={styles.inputContainer}>
-                                <input type="password" className={`${styles.inputLoginForm} ${styles.separacion}`} required/>
+                                <CustomeInputText style={{width: "80%"}} placeholder="Contraseña"/>
                             </div>
 
                         </div>
