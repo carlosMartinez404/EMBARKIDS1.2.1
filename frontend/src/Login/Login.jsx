@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 import styles from './assets/Login.module.css';
-import camion from './assets/camion.png'
-import CustomeInputText from "../customeComponents/CustomeInputText.jsx"
+import camion from './assets/camion.png';
+import CustomeInputText from "../customeComponents/CustomeInputText.jsx";
+import CustomeInputPassword from '../customeComponents/CustomeInputPassword.jsx';
 
 
 function Login(){
@@ -9,6 +10,12 @@ function Login(){
     const [active, setActive] = useState(false);
     const [valueUser, setValueUser] = useState("");
     const [valuePassword, setValuePassword] = useState("");
+    const [usuario, setUsuario] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleAlert =()=>{
+        alert(password)
+    }
 
     return(
         <>
@@ -24,11 +31,22 @@ function Login(){
 
                         <div className={styles.inputLoginFormContainer}>
                             <div className={styles.inputContainer}>
-                                <CustomeInputText style={{width: "80%"}} placeholder="Usuario"/>
+                                <CustomeInputText 
+                                    style={{width: "80%"}} 
+                                    placeholder="Usuario"
+                                    value={usuario}
+                                    onChange={setUsuario}
+                                />
                             </div>
-
+                        
+                            <br />
                             <div className={styles.inputContainer}>
-                                <CustomeInputText style={{width: "80%"}} placeholder="Contraseña"/>
+                                <CustomeInputPassword 
+                                    style={{width: "80%"}} 
+                                    placeholder="Contraseña"
+                                    value={password}
+                                    onChange={setPassword}
+                                />
                             </div>
 
                         </div>

@@ -20,6 +20,7 @@
     align-items: center;
     justify-content: center;
     min-width: 300px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .blueContainer{
@@ -87,9 +88,15 @@
 .submitButtonContainer{
     width: 100%;
     height: fit-content;
+    flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.submitButton:hover{
+    transform: scale(1.1);
+    filter: brightness(1.2);
+    transition: all 0.3s ease;
 }
 
 
@@ -102,6 +109,8 @@
     cursor: pointer;
     border-radius: 30px;
     background-color: #1053ff;
+    transform: scale(1);
+    transition: all 0.3s ease;
 }
 .camion{
     width: 30%;

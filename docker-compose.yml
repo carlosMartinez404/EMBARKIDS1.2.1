@@ -23,21 +23,40 @@ services: # define los contenedores que vamos a levantar
     build:  # Indica como contruir la imagen del contenedor
       context: ./backend  # Carpeta donde se buscara el Dockerfile y el codigo fuente
       dockerfile: Dockerfile.dev  # Dockerfile para dev
-    command: python manage.py runserver 0.0.0.0:8000  # Ejecuta el servidor de desarrollo de Django, accesible desde cualquier IP dentro del contenedor.
     ports:
       - "8000:8000" # Expone el puerto 8000 del contenedor al puerto 8000 de la maquina local permitiendo acceder a django desde el navegador
     volumes:
       - ./backend:/app  # Sincroniza la carpeta local ./backend con la carpeta /app dentro del contenedor.
+    environment: #  define variables de entorno dentro del contenedor
+      # Variables para conectar Django con PostgreSQL
+      - DATABASE_URL=postgresql://7ffc2948f66e8a33be69b47a5b8996f8:507aa218f8588f1a7abbac9651a94f8a@db:5432/EMBARKIDS1.2.1
+      - DB_NAME=EMBARKIDS1.2.1
+      - DB_USER=7ffc2948f66e8a33be69b47a5b8996f8
+      - DB_PASSWORD=507aa218f8588f1a7abbac9651a94f8a
+      - DB_HOST=db
+      - DB_PORT=5432
+      - SECRET_KEY=CARLOSM404
+      - DEBUG=True
     depends_on:
-      - db #  indica que este servicio depende del servicio "db", se asegura que la base de datos este lista antes de inicar django.
-  
+      db:
+        condition: service_healthy
+
+
   db: 
     image: postgres:15 #  Usa la imagen oficial de PostgreSQL version 15 como base para el contenedor de la base de datos
     environment: #  define variables de entorno dentro del contenedor
-      POSTGRES_DB: EMBARKIDS1.2.1 # Nombre de la base de datos
-      POSTGRES_USER: 7ffc2948f66e8a33be69b47a5b8996f8 # Credenciales de usuario de la base de datos
-      POSTGRES_PASSWORD: 507aa218f8588f1a7abbac9651a94f8a # Credenciales de usuario de la base de datos
-
+      POSTGRES_DB: EMBARKIDS1.2.1
+      POSTGRES_USER: 7ffc2948f66e8a33be69b47a5b8996f8
+      POSTGRES_PASSWORD: 507aa218f8588f1a7abbac9651a94f8a
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U 7ffc2948f66e8a33be69b47a5b8996f8 -d EMBARKIDS1.2.1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   pgdata:

@@ -1,11 +1,35 @@
 FROM python:3.11
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONNUNBUFFERED 1
+# Evita que Python escriba archivos .pyc
+ENV PYTHONDONTWRITEBYTECODE=1
+# Fuerza que la salida de Python sea sin buffer
+ENV PYTHONUNBUFFERED=1
 
+# Establece el directorio de trabajo
 WORKDIR /app
 
-COPY requirements.txt /app/
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# Instala dependencias del sistema necesarias
+# netcat-traditional es para el healthcheck en entrypoint.sh
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    netcat-traditional \
+    postgresql-client && \
+    rm -rf /var/lib/apt/lists/*
 
+# Copia e instala dependencias de Python
+COPY requirements.txt /app/
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copia el código del proyecto
 COPY . /app/
+
+# Copia el script de entrypoint y dale permisos de ejecución
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+# Expone el puerto 8000
+EXPOSE 8000
+
+# Define el entrypoint
+ENTRYPOINT ["/app/entrypoint.sh"]
