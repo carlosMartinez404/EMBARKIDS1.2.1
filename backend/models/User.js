@@ -46,6 +46,12 @@ userSchema.pre('save', async function(next) {
     next();
 });
 
+
+//  Metodo para comprobar contraseñas
+userSchema.methods.comparePassword = async function(passwordEntered) {
+    return await bcrypt.compare(passwordEntered, this.password);
+};
+
 //  Creamos el modelo basado en el esquema
 const User = mongoose.model('User', userSchema);
 

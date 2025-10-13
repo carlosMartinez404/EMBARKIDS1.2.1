@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose');
+const cors = require('cors');
  
 
 const app = express()
@@ -8,6 +9,12 @@ const port = 3000
 
 //  Middleware para parsear JSON
 app.use(express.json())
+
+//  Permite el frontend 
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}))
 
 //  Conexión a MongoDB
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://admin:secretpassword@mongodb:27017/EMBARKIDS121?authSource=admin';

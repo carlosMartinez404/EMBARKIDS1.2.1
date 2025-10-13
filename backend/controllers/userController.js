@@ -66,27 +66,36 @@ const deleteAllUsers = async (req, res) => {
 //  Actualizar un usuario por email
 const updateUser = async (req, res) => {
     try {
-        const { email } = req.params;   //  Obtenemos el email de la URL
-        const datosActualizados = req.body; //  Obtenemos los nuevos datos
+        const { email, ...currentData} = req.body;  //  Separamos email del resto de los parametros
+
+
+        //  Verificacion del email
+        if(!email) {
+            return res.status(400).json({
+                message: 'El email es requerido para actualizar'
+            });
+        }
 
         //  Busca y actualiza el usuario por email
-        const usuarioActualizado = await User.findOneAndUpdate(
-            {email: email}, //  Busca por email
-            datosActualizados,
-            { new: true} // Devuelve el usuario actualizado
+        const updatedUser = await User.findOneAndUpdate(
+            {email: email}, //  buscamos por email
+            currentData,    //  Actualiza solo los otros campos
+            {new: true} //  Devuelve el usuario actualizado
         );
 
-        //  Si no existe el usuario
-        if(!usuarioActualizado) {
+
+        //  Si no existe el usuario 
+        if(!updatedUser){
             return res.status(404).json({
-                message: 'Usuario no actualizado',
+                message: "Usuario no encontrado"
             });
         }
 
         res.status(200).json({
             message: 'Usuario actualizado correctamente',
-            user: usuarioActualizado
+            usuario: updatedUser
         });
+
 
     } catch (error) {
         res.status(400).json({
@@ -97,10 +106,64 @@ const updateUser = async (req, res) => {
 };
 
 
+//  Login de usuario
+const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        //  Verificar que tengamos el email y password
+        if(!email || !password) {
+            return res.status(400).json({
+                message: 'Email y contraseña son requeridos'
+            })
+        }
+
+
+
+        //  Buscar usuario por email
+        const user = await User.findOne({ email: email});
+
+        //  Si no existe el usuario
+        if(!user) {
+            return res.status(401).json({
+                message: "Credenciales incorrectas"
+            });
+        }
+
+        //  Comparar contraseñas
+        const correctPassword = await user.comparePassword(password);
+
+        if(!correctPassword) {
+            return res.status(401).json({
+                message: 'Credenciales incorrectas'
+            });
+        }
+
+
+        //  Login exitoso
+        res.status(200).json({
+            message: 'Login exitoso',
+            user: {
+                name: user.name,
+                email: user.email,
+                role: user.role
+            }
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error en el login',
+            error: error.message
+        });
+    }
+}
+
+
 //  Exportamos la funcion
 module.exports = {
     createUser,
     getUsers ,
     deleteAllUsers,
-    updateUser
+    updateUser,
+    loginUser
 }

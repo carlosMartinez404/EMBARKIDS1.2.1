@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createUser, getUsers, deleteAllUsers, updateUser } = require('../controllers/userController');
+const { createUser, getUsers, deleteAllUsers, updateUser, loginUser } = require('../controllers/userController');
 
 console.log('UserRoutes cargando correctamente')
 
@@ -11,6 +11,8 @@ router.get('/users', getUsers);
 
 router.delete('/users', deleteAllUsers)
 
-router.put('/users/:email', updateUser)
+router.put('/users', updateUser)
+
+router.post('/login', loginUser)
 
 module.exports = router;
