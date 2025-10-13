@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Frontend
   frontend:
@@ -49,13 +47,13 @@ services:
     environment:
       NODE_ENV: development
       PORT: 3000
-      MONGO_URI: mongodb://admin:secretpassword@mongodb:27017/EMBARKIDS1.2.1?authSource=admin
+      MONGO_URI: mongodb://admin:secretpassword@mongodb:27017/EMBARKIDS121?authSource=admin
     ports:
       - "3000:3000"
     depends_on:
       - mongodb
     volumes:
-      - ./backend/src:/app/src
+      - ./backend:/app
       - /app/node_modules
     networks:
       - EMBARKIDS1.2.1
