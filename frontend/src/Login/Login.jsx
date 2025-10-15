@@ -4,13 +4,16 @@ import styles from './assets/Login.module.css';
 import camion from './assets/camion.png';
 import CustomeInputText from "../customeComponents/CustomeInputText.jsx";
 import CustomeInputPassword from '../customeComponents/CustomeInputPassword.jsx';
-
+import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function Login(){
 
     //  Credenciales para el login
     const [user, setUser] = useState("")
     const [password, setPassword] = useState("");
+
+    const navigate = useNavigate()
    
     //  Estado pass
     const [pass, setPass] = useState()
@@ -34,6 +37,8 @@ function Login(){
             //  Si el login es exitoso 
             console.log('Login exitoso', response.data);
             localStorage.setItem('usuario', JSON.stringify(response.data.user))
+            navigate('/dashboard');
+
 
         } catch (error) {
             console.error('Error en el login: ', error)
