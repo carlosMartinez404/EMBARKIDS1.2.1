@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import OpenEye from './assets/openEye.svg?react';
-import ClosedEye from './assets/closedEye.svg?react';
+import OpenEye from '../../assets/openEye.svg?react';
+import ClosedEye from '../../assets/closedEye.svg?react';
 
 function InputText({style={}, placeholder, onChange}){
 

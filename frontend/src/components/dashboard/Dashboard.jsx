@@ -39,7 +39,7 @@ function Dashboard() {
                 </div>
 
                 <div className={Styles.menu}>
-                    <img src={Menu} className={Styles.MenuIcon}/>
+                    <img src={Menu} className={Styles.MenuIcon} onClick={handleFocus}/>
                 </div>
             </div>
 
@@ -50,10 +50,10 @@ function Dashboard() {
                 </div>
             </div>
 
-            <div className={Styles.mainOptionsContainer}>
-                <div className={Styles.blurContainer}></div>
+            <div className={focus === null? Styles.mainOptionsContainerBase : focus === true? Styles.mainOptionsContainerOpen : Styles.mainOptionsContainerClose}>
+                <div className={focus === null? Styles.blurContainerBase : focus === true? Styles.blurContainerOpen : Styles.blurContainerClose}></div>
 
-                <div className={focus === null? Styles.optionsContainerBase : ""}>
+                <div className={focus === null? Styles.optionsContainerBase : focus === true ? Styles.optionsContainerOpen : Styles.optionsContainerClose}>
                     <div className={Styles.OtherContainer}>
                         <img src={closeIcon} className={Styles.closeIcon} onClick={handleFocus}/>
                     </div>

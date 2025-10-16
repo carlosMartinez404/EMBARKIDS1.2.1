@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
-import styles from './assets/Login.module.css';
-import camion from './assets/camion.png';
-import CustomeInputText from "../customeComponents/CustomeInputText.jsx";
-import CustomeInputPassword from '../customeComponents/CustomeInputPassword.jsx';
+import styles from './Login.module.css';
+import camion from '../../assets/camion.png';
+import CustomeInputText from "../common/CustomeInputText.jsx";
+import CustomeInputPassword from '../common/CustomeInputPassword.jsx';
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 

@@ -32,6 +32,10 @@ app.get('/', (req, res) => {
 const userRoutes = require('./routes/userRoutes');
 app.use('/api', userRoutes);
 
+//  Importamos rutas del shipmentRoutes
+const shipmentRoutes = require('./routes/shipmentRoutes');
+app.use('/api', shipmentRoutes);
+
 
 
 app.listen(port, () =>{

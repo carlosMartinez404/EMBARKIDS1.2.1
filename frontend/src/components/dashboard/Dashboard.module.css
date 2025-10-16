@@ -24,6 +24,7 @@
     width: 100%;
     height: 10%;
     background-color: #ffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -54,8 +55,15 @@
 
 .MenuIcon{
     width: auto;
-    height: 40%;
+    height: 30%;
     cursor: pointer;
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.MenuIcon:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease;
 }
 
 
@@ -67,15 +75,13 @@
     display: flex;
     width: 90%;
     height: 100%;
-    background-color: aqua;
 }
 
 
 .buttonContainer{
     width: 100%;
     height: fit-content;
-    background-color: azure;
-    margin-top: 1%;
+    margin-top: 2%;
 }
 
 .buttonAdd{
@@ -88,6 +94,7 @@
     border-radius: 5px;
     background-color: #1053ff;
     transform: scale(1);
+    transition: all 0.3s ease;
 }
 .buttonAdd:hover{
     transform: scale(1.05);
@@ -98,18 +105,61 @@
 
 */
 
-.mainOptionsContainer{
+.mainOptionsContainerBase{
     position: absolute;
     display: flex;
     width: 100vw;
     height: 100vh;
+    pointer-events: none;
+}
+
+.mainOptionsContainerOpen{
+    position: absolute;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: all;
+}
+.mainOptionsContainerClose{
+    position: absolute;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+
 }
 
 
-.blurContainer{
+.blurContainerBase{
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(3px);
+    pointer-events: none;
+}
+
+.blurContainerOpen{
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    pointer-events: all;
+    animation-name: blurContainerOpenAnimation;
+    animation-duration: 0.5s;
+}
+
+@keyframes blurContainerOpenAnimation {
+    0%{backdrop-filter: blur(0px);}
+    100%{backdrop-filter: blur(10px);}
+}
+
+.blurContainerClose{
+    width: 100%;
+    height: 100%;
+    animation-name: blurContainerCloseAnimation;
+    animation-duration: 0.5s;
+}
+
+@keyframes blurContainerCloseAnimation {
+    0%{backdrop-filter: blur(10px);}
+    100%{backdrop-filter: blur(0px);}
 }
 
 
@@ -142,14 +192,29 @@
     justify-content: space-between;
     flex-direction: column;
     box-shadow: -4px 0 6px rgba(0, 0, 0, 0.2);
-    animation-name: optionsContainerClose;
-    animation-duration: 0.5s;
     transform: translateX(0%);
+    animation-name: optionsContainerOpen;
+    animation-duration: 0.5s ;
 }
 
 @keyframes optionsContainerOpen {
     0% {transform: translateX(100%);}
     100% {transform: translateX(0%);}
+}
+
+.optionsContainerClose{
+    display: flex;
+    position: fixed;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    background-color: #fff;
+    justify-content: space-between;
+    flex-direction: column;
+    box-shadow: -4px 0 6px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    animation-name: optionsContainerClose;
+    animation-duration: 0.5s;
 }
 
 @keyframes optionsContainerClose {
