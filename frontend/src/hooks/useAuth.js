@@ -15,6 +15,7 @@ export const useAuth = () => {
             const response = await authApi.login({ email, password });
             setUser(response.data.user);
             return {success: true, user: response.data.user};
+            localStorage.setItem('user', response.data.user);
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'Error al iniciar sesion';
             setError(errorMessage);

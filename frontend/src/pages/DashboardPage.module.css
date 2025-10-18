@@ -1,0 +1,43 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.mainView{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    flex-direction: column;
+}
+
+.body{
+    display: flex;
+    width: 90%;
+    height: 100%;
+}
+
+
+.buttonContainer{
+    width: 100%;
+    height: fit-content;
+    margin-top: 2%;
+}
+
+.buttonAdd{
+    width: 10%;
+    height: 40px;
+    border: none;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #1053ff;
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+.buttonAdd:hover{
+    transform: scale(1.05);
+}

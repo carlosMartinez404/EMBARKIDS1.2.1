@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
 
 //  Crear un nuevo usuario 
@@ -139,14 +140,36 @@ const loginUser = async (req, res) => {
             });
         }
 
+        //  Comprobar que JWT_SECRET esté definido
+        if (!process.env.JWT_SECRET) {
+            return res.status(500).json({
+                message: 'Error del servidor: JWT_SECRET no está definido'
+            });
+        }
+
+
+        //  Generar JWT (Payload minimo)
+        const payload = {
+            id: user._id,
+            email: user.email,
+            role: user.role,
+            name: user.name
+        };
+
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
+            expiresIn: '2h' //  Token valido por 2 horas
+        });
+
 
         //  Login exitoso
         res.status(200).json({
             message: 'Login exitoso',
+            token,
             user: {
                 name: user.name,
                 email: user.email,
-                role: user.role
+                role: user.role,
+                id: user._id
             }
         });
 
