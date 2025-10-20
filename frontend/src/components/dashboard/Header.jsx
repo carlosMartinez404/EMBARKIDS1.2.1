@@ -1,4 +1,4 @@
-import styles from './Header.module.css';
+import styles from './styles/Header.module.css';
 import Truck from '../../assets/camion.png';
 import Menu from '../../assets/menu.png';
 

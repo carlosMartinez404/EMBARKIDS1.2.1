@@ -17,6 +17,7 @@
     display: flex;
     width: 90%;
     height: 100%;
+    flex-direction: column;
 }
 
 
@@ -41,3 +42,4 @@
 .buttonAdd:hover{
     transform: scale(1.05);
 }
+

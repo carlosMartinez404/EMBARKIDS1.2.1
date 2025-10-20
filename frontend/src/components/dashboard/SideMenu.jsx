@@ -1,4 +1,4 @@
-import styles from './SideMenu.module.css';
+import styles from './styles/SideMenu.module.css';
 import closeIcon from '../../assets/cancelar.png';
 
 function SideMenu({ isOpen, onClose, onLogout }) {

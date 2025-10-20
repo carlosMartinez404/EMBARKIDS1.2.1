@@ -4,6 +4,9 @@ import { useMenu } from '../hooks/useMenu';
 import Header from '../components/dashboard/Header';
 import SideMenu from '../components/dashboard/SideMenu';
 import styles from './DashboardPage.module.css';
+import ShipmentCard from '../components/dashboard/ShipmentCard';
+import ShipmentList from '../components/dashboard/shipmentList';
+
 
 function DashboardPage() {
     const navigate = useNavigate();
@@ -25,7 +28,8 @@ function DashboardPage() {
                         Crear Embarque
                     </button>
                 </div>
-            </div>
+                <ShipmentList style={styles.shipmentCard} />
+            </div> 
 
             <SideMenu 
                 isOpen={isOpen} 
