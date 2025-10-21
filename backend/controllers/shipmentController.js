@@ -4,7 +4,15 @@ const Shipment = require('../models/Shipment');
 const createShipment = async (req, res) => {
     try{
         const { idShipment, destiny, numberBoxes, items } = req.body;
+        const idExist = await Shipment.findOne({idShipment: idShipment});
 
+        if(idExist){
+            res.status(409).json({
+                success: false,
+                message: "Este id ya esta registrado!"
+            })
+        }
+        
         const newShipment = await Shipment.create({
             idShipment,
             destiny,
@@ -16,6 +24,8 @@ const createShipment = async (req, res) => {
             success: true,
             data: newShipment
         });
+
+
     } catch (error) {
         res.status(400).json({
             success: false,
@@ -44,7 +54,29 @@ const getShipments = async (req, res) => {
 }
 
 
+// Eliminar todos los embarques (para pruebas)
+const deleteAllShipments = async (req, res) => {
+    try {
+        const response = await Shipment.deleteMany({});
+
+        res.status(200).json({
+            message: 'Todos los embarques han sido eliminados',
+            eliminatedShipments: response.deletedCount
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error al eliminar los usuarios',
+            error: error.message
+        });
+    }
+};
+
+
+
+
 module.exports = {
     createShipment,
-    getShipments
+    getShipments,
+    deleteAllShipments
 }

@@ -4,22 +4,33 @@
 */
 
 .mainOptionsContainerBase{
-    position: absolute;
-    display: flex;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100vw;
     height: 100vh;
     pointer-events: none;
 }
 
 .mainOptionsContainerOpen{
-    position: absolute;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
     width: 100vw;
     height: 100vh;
     pointer-events: all;
 }
 .mainOptionsContainerClose{
-    position: absolute;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -85,6 +96,7 @@
     position: fixed;
     right: 0;
     width: 20%;
+    min-width: 350px;
     height: 100%;
     background-color: #fff;
     justify-content: space-between;

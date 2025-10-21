@@ -7,18 +7,23 @@ const itemSchema = new mongoose.Schema({
         uppercase: true,
         trim: true
     },
-    quantity: {
-        type: String,
-        required: true,
-        uppercase: true,
-        trim: true
-    },
     lot: {
         type: String,
         requierd: true,
         trim: true,
         uppercase: true
     },
+    quantity: {
+        type: String,
+        required: true,
+        uppercase: true,
+        trim: true
+    },
+    boxes: {
+        type: Number,
+        required: true,
+        trim: true
+    }
 
 }, {_id: false});
 
@@ -28,13 +33,19 @@ const shipmentSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        uppercase: true
+        uppercase: true,
+        unique: true
+    },
+    Status: {
+        type: String,
+        trim: true,
+        default: 'EN PROCESO'
     },
     destiny: {
         type: String,
-        required: true,
         trim: true,
-        uppercase: true
+        uppercase: true,
+        default: 'DESTINO AUN NO DEFINIDO'
     },
     numberBoxes: {
         type: String,
@@ -43,11 +54,10 @@ const shipmentSchema = new mongoose.Schema({
         uppercase: true
     }, 
     items: [itemSchema],
-    dateCreation: {
+    creationDate: {
         type: Date,
         default: Date.now
     }
-
 });
 
 const Shipment = mongoose.model('Shipment', shipmentSchema);

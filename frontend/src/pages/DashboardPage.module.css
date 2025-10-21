@@ -3,32 +3,35 @@
     margin: 0px;
 }
 .mainView{
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 300px;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     flex-direction: column;
+    overflow-x: auto;
 }
 
 .body{
     display: flex;
     width: 90%;
-    height: 100%;
+    min-height: 90vh;
+    margin-top: 100px;
     flex-direction: column;
 }
 
 
 .buttonContainer{
+    display: flex;
+    align-items: center;
     width: 100%;
-    height: fit-content;
-    margin-top: 2%;
+
 }
 
 .buttonAdd{
     width: 10%;
+    min-width: 150px;
     height: 40px;
     border: none;
     color: white;

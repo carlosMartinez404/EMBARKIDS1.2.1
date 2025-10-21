@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import ShipmentCard from "./ShipmentCard";
 import {getShipments} from '../../api/shipmentCardApi';
 import styles from './styles/shipmentList.module.css';
+import emptyTruck from '../../assets/camionVacio.png';
 
 const ShipmentList =()=> {
     const [shipments, setShipments] = useState([]);
@@ -50,8 +51,13 @@ const ShipmentList =()=> {
     return (
         <div>
             {shipments.length === 0 ? (
-                <div>
-                    <p>no hay envios disponibles</p>
+                <div className={styles.listContainerNoContent}>
+                    <div style={styles.emptyContainer}>
+                        <img src={emptyTruck}/>
+                        <div className={styles.pContainer}>
+                            <p>No hay embarques disponibles...</p>
+                        </div>
+                    </div>
                 </div>
 
             ): (

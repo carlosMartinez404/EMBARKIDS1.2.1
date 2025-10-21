@@ -15,8 +15,8 @@ const ShipmentCard = ({shipment, onUpdate}) =>{
             </div>
 
             <div className={styles.infoContainer}>
-                <span>Status:</span>
-                <span></span>
+                <h2>Status:</h2>
+                <h1>{shipment.Status}</h1>
 
                 <h2>Id Embarque:</h2>
                 <h1>{shipment.idShipment}</h1>

@@ -6,7 +6,7 @@ import SideMenu from '../components/dashboard/SideMenu';
 import styles from './DashboardPage.module.css';
 import ShipmentCard from '../components/dashboard/ShipmentCard';
 import ShipmentList from '../components/dashboard/shipmentList';
-
+import FormCreateShipment from '../components/dashboard/FormCreateShipment';
 
 function DashboardPage() {
     const navigate = useNavigate();
@@ -36,7 +36,9 @@ function DashboardPage() {
                 onClose={closeMenu} 
                 onLogout={handleLogOut}
             />
+            <FormCreateShipment />
         </div>
+
     );
 }
 
