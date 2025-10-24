@@ -72,11 +72,36 @@ const deleteAllShipments = async (req, res) => {
     }
 };
 
-
+//  Obtener embarque por id
+const getShipmentById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        
+        const shipment = await Shipment.findOne({ idShipment: id });
+        
+        if (!shipment) {
+            return res.status(404).json({ 
+                message: 'Embarque no encontrado' 
+            });
+        }
+        
+        res.status(200).json({
+            success: true,
+            data: shipment
+        });
+    } catch (error) {
+        console.error('Error al obtener embarque:', error);
+        res.status(500).json({ 
+            message: 'Error al obtener el embarque',
+            error: error.message 
+        });
+    }
+};
 
 
 module.exports = {
     createShipment,
     getShipments,
-    deleteAllShipments
+    deleteAllShipments,
+    getShipmentById
 }

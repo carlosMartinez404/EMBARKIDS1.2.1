@@ -7,11 +7,14 @@ import styles from './DashboardPage.module.css';
 import ShipmentCard from '../components/dashboard/ShipmentCard';
 import ShipmentList from '../components/dashboard/shipmentList';
 import FormCreateShipment from '../components/dashboard/FormCreateShipment';
+import { useShipmentForm } from '../hooks/useShipmentForm';
+
 
 function DashboardPage() {
     const navigate = useNavigate();
     const { logout } = useAuth();
     const { isOpen, toggleMenu, closeMenu } = useMenu();
+    const { isOpenForm, toggleForm, closeForm, openForm} = useShipmentForm();
 
     const handleLogOut = () => {
         logout();
@@ -24,7 +27,7 @@ function DashboardPage() {
 
             <div className={styles.body}>
                 <div className={styles.buttonContainer}>
-                    <button className={styles.buttonAdd}>
+                    <button className={styles.buttonAdd} onClick={openForm}>
                         Crear Embarque
                     </button>
                 </div>
@@ -36,7 +39,9 @@ function DashboardPage() {
                 onClose={closeMenu} 
                 onLogout={handleLogOut}
             />
-            <FormCreateShipment />
+            <FormCreateShipment 
+                isOpenForm={isOpenForm}            
+            />
         </div>
 
     );
