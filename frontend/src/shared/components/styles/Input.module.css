@@ -1,0 +1,23 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.inputContainer{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    flex-direction: column;
+    justify-content: center;
+    background-color: aqua;
+}
+
+.input{
+    padding: 5px 10px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.label{
+    position: absolute;
+    padding: 0px 10px;
+}
