@@ -8,10 +8,11 @@
     height: fit-content;
     flex-direction: column;
     justify-content: center;
-    background-color: aqua;
 }
 
 .input{
+    width: 100%;
+    height: 100%;
     padding: 5px 10px;
     border: 1px solid;
     border-radius: 5px;
@@ -20,4 +21,13 @@
 .label{
     position: absolute;
     padding: 0px 10px;
+    pointer-events: none;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+    transition: all 0.3s ease;
+}
+
+.labelUp{
+    transform: translateY(-160%);
+    transition: all 0.3s ease;
 }

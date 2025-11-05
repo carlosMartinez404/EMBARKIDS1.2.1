@@ -2,4 +2,112 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* src/styles/global.css o components.css */
+
+/* Input Base */
+input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: rgba(30, 41, 59, 0.5); /* slate-800/50 */
+  border: 1px solid #334155; /* slate-700 */
+  border-radius: 0.5rem;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input::placeholder {
+  color: #64748b; /* slate-500 */
+}
+
+input:focus {
+  border-color: transparent;
+  ring: 2px solid #3b82f6; /* blue-500 */
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Label para inputs */
+label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #cbd5e1; /* slate-300 */;
+}
+
+/* Contenedor de input */
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Input con error */
+.input-error {
+  border-color: #ef4444; /* red-500 */
+}
+
+.input-error:focus {
+  ring: 2px solid #ef4444;
+  box-shadow: 0 0 0 2px #ef4444;
+}
+
+/* Mensaje de error */
+.input-error-message {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Input con éxito */
+.input-success {
+  border-color: #10b981; /* green-500 */
+}
+
+/* Checkbox personalizado */
+.checkbox {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #334155;
+  background-color: rgba(30, 41, 59, 0.5);
+  color: #3b82f6;
+  cursor: pointer;
+}
+
+.checkbox:focus {
+  ring: 2px solid #3b82f6;
+  ring-offset: 0;
+}
+
+/* Textarea */
+.textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: rgba(30, 41, 59, 0.5);
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.textarea::placeholder {
+  color: #64748b;
+}
+
+.textarea:focus {
+  border-color: transparent;
+  ring: 2px solid #3b82f6;
+  box-shadow: 0 0 0 2px #3b82f6;
 }

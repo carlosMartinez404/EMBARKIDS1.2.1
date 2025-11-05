@@ -1,0 +1,7 @@
+.form{
+    width: 30vw;
+    height: 60vh;
+    background-color: beige;
+    border-radius: 20px;
+    z-index: 1;
+}

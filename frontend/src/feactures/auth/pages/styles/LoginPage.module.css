@@ -1,0 +1,36 @@
+.mainContainer{
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /*  Gradiente de fondo */
+
+    background: linear-gradient(
+        to bottom right,
+        #020617,  /* slate-950 */
+        #172554,  /* blue-950 */
+        #020617 
+    );
+}
+
+.mainContainer::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba( 0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}

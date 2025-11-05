@@ -15,6 +15,7 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - CHOKIDAR_INTERVAL=100
       - VITE_API_URL=http://localhost:3000
+    command: npm run dev -- --host 0.0.0.0
     depends_on:
       - backend
     networks:
