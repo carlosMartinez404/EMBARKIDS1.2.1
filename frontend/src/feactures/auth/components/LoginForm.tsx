@@ -1,30 +1,57 @@
 import { useState } from "react";
 import { CustomeInput } from "../../../shared/components/Input";
 import styles from "./styles/LoginForm.module.css"
+import Truck from "../../../assets/images/truck.png"
+import { CustomeButton } from "../../../shared/components/CustomeButton";
 
 export function LoginForm(){
-    const [user, setUser] = useState(null)
-    const [password, setPassword] = useState(null)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
     return(
         <form className={styles.form}>
-            <br />
-            <br />
-            <CustomeInput 
-                label="This is a input" 
-                type="text"
-                width="50%"
-                height="40px"
-            />
 
-            <br />
+            <div className={styles.logoContainer}>
+                <img className={styles.logo} src={Truck} />
+            </div>
 
-            <CustomeInput
-                label="Password" 
-                type="password"
-                width="50%"
-                height="40px"
-            />
+            <div className={styles.labelsContainer}>
+                <label className={styles.labelTitle}>Embarkids</label>
+                <label className={styles.labelSubTitle}>Incia sesión en tu cuenta</label>
+            </div>
+
+            <div className={styles.inputContainer}>
+                <CustomeInput 
+                    label="Correo electrónico o usuario" 
+                    type="text"
+                    width="80%"
+                    height="45px"
+                    value={email}
+                    onChange={(e)=> setEmail(e.target.value)}
+                    required
+                />
+                
+                <br />
+                <CustomeInput
+                    label="Password" 
+                    type="password"
+                    width="80%"
+                    height="45px"
+                    value={password}
+                    onChange={(e)=> setPassword(e.target.value)}
+                    required
+                />
+            </div>
+
+            <div className={styles.buttonContainer}>
+                <CustomeButton
+                    contenido="Iniciar Sesión"
+                    type="normal"
+                    width="80%"
+                    height="40px"
+                />
+            </div>
+
         </form>
     )
 }

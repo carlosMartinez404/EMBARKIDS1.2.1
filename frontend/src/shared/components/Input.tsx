@@ -1,19 +1,21 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import styles from "./styles/Input.module.css"
 
-interface InputProps { 
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement>{ 
     label?: string
-    type: string
     width: string 
     height: string
 }
 
-export function CustomeInput({label, type, width, height}: InputProps) {
+export function CustomeInput({label, width, height, ...props}: InputProps) {
 
     const [status, setStatus] = useState<boolean | null>(null)
 
     const handleChangeStatus = () => {
-        setStatus(prev => (prev === null? true: !prev))
+        if(!props.value){
+            setStatus(prev => (prev === null? true: !prev))
+        }
+        
     }
 
 
@@ -28,8 +30,8 @@ export function CustomeInput({label, type, width, height}: InputProps) {
             <label className={`${styles.label} ${(status === null || status === false? "" : styles.labelUp)}` }>{label}</label>
 
             <input 
-                type={type} 
-                className={`${styles.input}`} 
+                {...props}
+                className={`${styles.input} ${(status === null || status === false? "" : styles.inputUp)}` }
                 onFocus={handleChangeStatus}
                 onBlur={handleChangeStatus}
             />
