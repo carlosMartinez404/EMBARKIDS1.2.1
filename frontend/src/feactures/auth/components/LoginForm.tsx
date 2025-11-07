@@ -16,7 +16,7 @@ export function LoginForm(){
             </div>
 
             <div className={styles.labelsContainer}>
-                <label className={styles.labelTitle}>Embarkids</label>
+                <label className={styles.labelTitle}>EMBARKIDS</label>
                 <label className={styles.labelSubTitle}>Incia sesión en tu cuenta</label>
             </div>
 
@@ -33,6 +33,7 @@ export function LoginForm(){
                 
                 <br />
                 <CustomeInput
+                    className={styles.customeInputPassword}
                     label="Password" 
                     type="password"
                     width="80%"

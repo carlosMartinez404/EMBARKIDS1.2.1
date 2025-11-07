@@ -11,9 +11,8 @@ export function LoginPage() {
                 opacity={0.5}
                 config={{
                     radius: 5,
-                    particleCount: 100,
-                    particleColor: 0x3b82f6,
-                
+                    particleCount: 80,
+                    particleColor: 0x3b82f6,  
                 }}
             />
 
