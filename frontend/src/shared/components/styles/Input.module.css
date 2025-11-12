@@ -8,6 +8,7 @@
     height: auto;
     flex-direction: column;
     justify-content: center;
+    align-items:unsafe;
     position: relative;
     box-sizing: border-box;
 }
@@ -44,4 +45,27 @@
     transition: all 0.3s ease;
     user-select: none;
     margin-top: 10px;
+}
+.IconEyeContainer{
+    display: flex;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    opacity: 0.5;
+    right: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.IconEyeContainerUp {
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.IconEye{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
 }
