@@ -1,5 +1,10 @@
-import {AppRoutes} from './routes'
+import { AppRoutes } from './routes'
+import { AuthProvider } from '../feactures/auth/hooks/use.Auth'
 
 export function App(){ 
-    return <AppRoutes />
+    return (
+        <AuthProvider>
+            <AppRoutes />
+        </AuthProvider>
+    )
 }
