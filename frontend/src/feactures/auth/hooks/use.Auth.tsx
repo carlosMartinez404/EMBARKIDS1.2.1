@@ -41,10 +41,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify(user));
         setUser(user);
+        await new Promise(resolve => setTimeout(resolve, 300));
         return true;
       } else {
         // Type cast porque el tipo de error no tiene message explícito en auth.types.ts
-        setError((response.data as { message: string }).message);
+        setError((response.data as unknown as { message: string }).message);
         return false;
       }
     } catch (err: any) {
@@ -69,7 +70,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(user);
         return true;
       } else {
-        setError((response.data as { message: string }).message);
+        setError((response.data as unknown as { message: string }).message);
         return false;
       }
     } catch (err: any) {

@@ -1,0 +1,15 @@
+.SideLeftMenuMainContainer{
+    display: flex;
+    width: 10%;
+    height: 95%;
+    border-right: 1px solid;
+    flex-direction: column;
+}
+.OptionContainer{
+    width: 100%;
+    height: fit-content;
+    background-color: aqua;
+}
+.Option{
+    padding: 5px 5px;
+}

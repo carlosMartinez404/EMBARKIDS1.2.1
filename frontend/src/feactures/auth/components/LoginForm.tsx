@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useEffect, useState} from "react";
 import type {FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { CustomeInput } from "../../../shared/components/Input";
@@ -12,8 +12,15 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { login, error } = useAuth();
+  const { login, error, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+
+  //  Redirigir si ya esta autenticado
+  useEffect(() => {
+    if(isAuthenticated) {
+      navigate("/dashboard")
+    }
+  })
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -39,20 +46,6 @@ export function LoginForm() {
         <label className={styles.labelSubTitle}>Inicia sesión en tu cuenta</label>
       </div>
 
-      {error && (
-        <div
-          style={{
-            color: "red",
-            padding: "10px",
-            marginBottom: "10px",
-            backgroundColor: "#ffebee",
-            borderRadius: "4px",
-            textAlign: "center",
-          }}
-        >
-          {error}
-        </div>
-      )}
 
       <div className={styles.inputContainer}>
         <CustomeInput
@@ -63,7 +56,7 @@ export function LoginForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-        />
+          />
 
         <br />
         <CustomeInput
@@ -75,9 +68,16 @@ export function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-        />
+          />
       </div>
 
+      {error && (
+          <div
+            className={styles.errorContainer}
+          >
+            {error}
+          </div>
+      )}
       <div className={styles.buttonContainer}>
         <CustomeButton
           contenido={isSubmitting ? "Cargando..." : "Iniciar Sesión"}
