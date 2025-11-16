@@ -8,8 +8,30 @@
 .OptionContainer{
     width: 100%;
     height: fit-content;
-    background-color: aqua;
+    cursor: pointer;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.OptionContainer:hover{
+    background-color: rgba(210, 210, 210, 0.5);
 }
 .Option{
-    padding: 5px 5px;
+    padding: 5px 0px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.Icon{
+    width: 10%;
+    min-width: 20px;
+    padding: 10px;
+}
+.MenuIcon{
+    width: 10%;
+    padding: 10px;
+    margin-left: 2%;
+}
+.AddProductIcon{
+    width: 15%;
 }
